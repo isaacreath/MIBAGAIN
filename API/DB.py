@@ -6,9 +6,9 @@ import os
 class Database():
 
     def __init__(self):
-        self.MONGO_URL = os.environ.get('MONGOHQ_URL')
-        self.client = MongoClient(self.MONGO_URL)
-        self.db = self.client[urlparse(self.MONGO_URL).path[1:]]
+        #self.MONGO_URL = os.environ.get('MONGOHQ_URL')
+        self.client = MongoClient()
+        self.db = self.client["mark"]
         self.collection = self.db['collection']
         self.friend_collection = self.db['friend_collection']
         self.user_collection = self.db['user_collection']
@@ -20,6 +20,9 @@ class Database():
     def get_entries(self):
         for p in self.posts.find():
             print p
+
+    def delete_entries(self, entry):
+        self.posts.remove(entry)
 
     def add_user(self, user):
         uid = user["userid"]

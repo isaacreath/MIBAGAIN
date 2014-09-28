@@ -34,6 +34,8 @@ class Message():
         for p in self.db.posts.find():
             if(p["coordinates"][0] >= user_x - 0.00001 and p["coordinates"][0] <= user_x + 0.00001):
                 if(p["coordinates"][1] >= user_y - 0.00001 and p["coordinates"][1] <= user_y + 0.00001):
+
+                    self.db.delete_entries(p)
                     return p
         # print str(p[0]),'\n'
         return
