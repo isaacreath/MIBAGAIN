@@ -38,4 +38,4 @@ class Message():
                     self.db.delete_entries(p)
                     return p
         # print str(p[0]),'\n'
-        return
+        return "NONE"
