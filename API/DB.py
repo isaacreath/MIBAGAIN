@@ -6,7 +6,7 @@ import os
 class Database():
 
     def __init__(self):
-        #self.MONGO_URL = os.environ.get('MONGOHQ_URL')
+        self.MONGO_URL = os.environ.get('MONGOHQ_URL')
         self.client = MongoClient()
         self.db = self.client["mark"]
         self.collection = self.db['collection']
