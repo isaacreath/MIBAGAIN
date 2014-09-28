@@ -5,10 +5,10 @@ import os
 
 class Database():
 
-    def __init__(self):
+    def _init__(self):
         self.MONGO_URL = os.environ.get('MONGOHQ_URL')
-        self.client = MongoClient()
-        self.db = self.client["mark"]
+        self.client = MongoClient(self.MONGO_URL)
+        self.db = self.client[urlparse(self.MONGO_URL).path[1:]]
         self.collection = self.db['collection']
         self.friend_collection = self.db['friend_collection']
         self.user_collection = self.db['user_collection']
