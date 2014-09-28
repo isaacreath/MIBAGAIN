@@ -66,9 +66,10 @@ def drop_message():
     message = request.form.get('message')
     user_id = request.form.get('userId')
     viewable_by = request.form.get('viewableBy')
-    args = [message_x, message_y, message, user_id, viewable_by]
+    is_picture = request.form.get('isPicture')
+    args = [user_id, message_x, message_y, message, viewable_by, is_picture]
     if validate_post_request(args):
-        messages.drop_message(message_x, message_y, message, user_id, viewable_by)
+        messages.drop_message(user_id, message_x, message_y, message, viewable_by, is_picture)
         return "Post Successful\n"
     else:
         return "Invalid argument matching\n", 400
@@ -81,7 +82,7 @@ def pickup_message():
     args = [user_x, user_y, user_id]
     if validate_post_request(args):
         print "Pickup successful\n"
-        temp = messages.pickup_message(user_x, user_y, user_id)
+        temp = messages.pickup_message(user_id, user_x, user_y)
         return str(temp)
     else:
         return "Invalid argument matching\n", 400
